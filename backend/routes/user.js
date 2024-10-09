@@ -43,12 +43,13 @@ router.post('/signup', async (req, res) => {
                         balance: 7000
                     })
 
-                    res.status(200).json({ message: 'User created successfully' })
+                    const token = jwt.sign({ userId }, JWT_SECRET)
+                    res.status(200).json({message:'User created successfully', token})
                     return
                 })
             })
         } else {
-            res.status(400).json({ message: `${username} is already taken please try to sign in` })
+            res.status(400).json(`${username} is already taken please try to sign in` )
             return
         }
 
