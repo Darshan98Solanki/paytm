@@ -109,16 +109,20 @@ router.put('/updateUser', middleWear, async (req, res) => {
 router.get("/getusers", middleWear, async (req, res) => {
 
     const usersFilter = req.query.filter || ""
+    const currentUser = req.userId
 
     const user = await users.find({
         $or: [{
             'firstname': { '$regex': usersFilter }
         }, {
             'lastname': { '$regex': usersFilter }
+        }],
+        $and: [{
+          _id: { $nin: [currentUser]}  
         }]
     })
 
-    res.status(200).json({ data: user })
+    res.status(200).json({ users: user })
 
 })
 

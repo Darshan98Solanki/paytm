@@ -1,16 +1,37 @@
 import { User } from "./User";
+import { useEffect, useState } from "react"
+import axios from "axios";
+import { SearchBar } from "./searchBar";
 
 export function Users() {
+
+  const [users, setUsers] = useState([])
+  const [filter, setFilter] = useState("")
+
+  useEffect(()=>{
+    axios.get("http://localhost:3000/api/v1/user/getusers?filter="+filter,{ 
+      headers:{
+        authorization: localStorage.getItem("token")
+      }
+    }).then(
+      response => {
+        setUsers(response.data.users)
+      })
+  },[filter])
+
   return (
     <div className="flex flex-col w-full">
-      <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+      <SearchBar onChange={ e =>{
+        setFilter(e.target.value)
+      }}/>
+      <div className="overflow-x-hidden sm:-mx-6 lg:-mx-0">
+        <div className="inline-block min-w-full py-2 sm:px-10 lg:px-8">
           <div className="overflow-hidden">
             <table className="min-w-full text-left text-sm font-light mt-10">
               <tbody>
-                <User fname={"Darshan"} lname={"Solanki"}/>
-                <User fname={"Harkirat"} lname={"Singh"}/>
-                <User fname={"Harsh"} lname={"Ramwani"}/>
+                {
+                  users.map(user => <User key={user._id} id={user._id} fname={user.firstname} lname={user.lastname}/>)
+                }
               </tbody>
             </table>
           </div>

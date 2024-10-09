@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 export function TopBar({username="User"}) {
 
   return <div className="h-14 py-10 shadow-md shadow-cyan-400/50 flex justify-between">

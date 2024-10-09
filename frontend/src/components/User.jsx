@@ -1,21 +1,25 @@
-export function User({ fname, lname }) {
-  
-    const shortName = fname.charAt(0)+lname.charAt(0)
+import { useNavigate } from "react-router-dom";
+
+export function User({ fname, lname, id }) {
+  const shortName = fname.charAt(0) + lname.charAt(0);
+  const navigate = useNavigate()
 
   return (
     <tr className="">
-      <td className="whitespace-nowrap px-6 py-4 font-medium">
+      <td className="whitespace-nowrap px-4 md:px-2 py-4 font-medium">
         <div className="inline-flex items-center justify-center w-12 h-12 text-xl text-white bg-indigo-500 rounded-full">
           {shortName}
         </div>
-        <span className="ml-4 font-bold text-md md:text-lg">
+        <span className="ml-4 font-bold text-sm align-[4px] md:text-lg">
           {fname + " " + lname}
         </span>
       </td>
       <td>
-        <div className="flex rounded-xl bg-gradient-to-tr from-pink-300 to-blue-300 p-0.5 shadow-lg mr-5">
-          <button className="flex-1 font-bold md:text-lg text-xs py-2 px-3 md:px-0 bg-white md:py-3 rounded-xl">
-            Send
+        <div className="float-end mr-2"> 
+          <button onClick={ e => {
+            navigate("/sendmoney?id="+id+"&firstname="+fname+"&lastname="+lname)
+          }} className="bg-gray-800 text-white md:px-6 md:py-4 px-3 py-2 rounded-md hover:bg-gray-700 font-bold focus:outline-none">
+            Send Money
           </button>
         </div>
       </td>
