@@ -1,20 +1,15 @@
 {
     "version": 2,
     "builds": [
-      {
-        "src": "index.js",
-        "use": "@vercel/node"
-      }
+        {
+            "src": "index.js",
+            "use": "@vercel/node"
+        }
     ],
     "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "index.js"
-      }
-    ],
-    "env": {
-      "SECRET": "paymtwebsiteSecret",
-      "MONGO": "mongodb+srv://darshan98solanki:oq8OcJvwwXZ23GRg@cluster0.v1ufnmc.mongodb.net/paytm"
-    }
-  }
-  
+        {
+            "src": "/(.*)",
+            "dest": "/"
+        }
+    ]
+}
