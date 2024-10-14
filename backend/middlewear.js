@@ -11,11 +11,11 @@ const authToken = (req, res, next) => {
     }else{
 
         const token = authHeader.split(' ')[1]
-        
+    
         jwt.verify(token, JWT_SECRET, (err, decode)=>{
 
             if(err || !decode.userId){
-                res.status(403).json({message:"You are not authorised"})
+                res.status(403).json({message:"You are not authorised", authorization:false})
                 return
             }else{
                 req.userId = decode.userId
