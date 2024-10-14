@@ -1,7 +1,7 @@
-require('dotenv').config();
 const mongoose = require('mongoose');
 const { number } = require('zod');
-mongoose.connect(process.env.MONGO)
+require('dotenv').config();
+mongoose.connect('mongodb+srv://darshan98solanki:oq8OcJvwwXZ23GRg@cluster0.v1ufnmc.mongodb.net/paytm')
 
 const userSchema = mongoose.Schema({
     username: {
