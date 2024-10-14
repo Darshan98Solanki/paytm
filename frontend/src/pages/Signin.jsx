@@ -42,14 +42,12 @@ function Signin() {
         })
         .then((response) => {
           localStorage.setItem("token", "Bearer " + response.data.token);
-          console.log(response.data.token);
           navigator("/Dashboard");
         })
         .catch((error) => {
           toast.error(error.response.data);
         });
     } catch (error) {
-      console.log(error.response.data);
       toast.error(error.response.data);
     }
   };
