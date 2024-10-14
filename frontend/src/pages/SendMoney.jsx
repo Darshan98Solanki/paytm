@@ -58,7 +58,7 @@ function SendMoney() {
             onClick={() => {
               axios
                 .put(
-                  "http://localhost:3000/api/v1/account/transfer",
+                  "https://paytm-inky.vercel.app/api/v1/account/transfer",
                   {
                     to: id,
                     amount,

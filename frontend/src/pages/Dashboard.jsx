@@ -18,7 +18,7 @@ function Dashboard() {
         navigator("../signin")
       } else {
         axios
-          .get("http://localhost:3000/api/v1/user/me", {
+          .get("https://paytm-inky.vercel.app/api/v1/user/me", {
             headers: {
               authorization: localStorage.getItem("token"),
             },
@@ -34,7 +34,7 @@ function Dashboard() {
   useEffect(() => {
     try {
       axios
-        .get("http://localhost:3000/api/v1/user/getUserName", {
+        .get("https://paytm-inky.vercel.app/api/v1/user/getUserName", {
           headers: {
             authorization: localStorage.getItem("token"),
           },
@@ -48,7 +48,7 @@ function Dashboard() {
   useEffect(() => {
     try {
       axios
-        .get("http://localhost:3000/api/v1/account/balance", {
+        .get("https://paytm-inky.vercel.app/api/v1/account/balance", {
           headers: {
             authorization: localStorage.getItem("token"),
           },

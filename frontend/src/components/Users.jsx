@@ -9,7 +9,7 @@ export function Users() {
   const [filter, setFilter] = useState("")
 
   useEffect(()=>{
-    axios.get("http://localhost:3000/api/v1/user/getusers?filter="+filter,{ 
+    axios.get("https://paytm-inky.vercel.app/api/v1/user/getusers?filter="+filter,{ 
       headers:{
         authorization: localStorage.getItem("token")
       }

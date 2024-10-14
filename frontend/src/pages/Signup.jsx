@@ -15,7 +15,7 @@ function Signup() {
     try {
       const token = localStorage.getItem("token");
       axios
-        .get("http://localhost:3000/api/v1/user/me", {
+        .get("https://paytm-inky.vercel.app/api/v1/user/me", {
           headers: {
             authorization: token,
           },
@@ -38,7 +38,7 @@ function Signup() {
 
     try {
       axios
-        .post("http://localhost:3000/api/v1/user/signup", {
+        .post("https://paytm-inky.vercel.app/api/v1/user/signup", {
           username,
           firstname,
           lastname,
