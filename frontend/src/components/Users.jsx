@@ -1,7 +1,7 @@
 import { User } from "./User";
 import { useEffect, useState } from "react"
 import axios from "axios";
-import { SearchBar } from "./searchBar";
+import { SearchBar } from "./SearchBar";
 
 export function Users() {
 
