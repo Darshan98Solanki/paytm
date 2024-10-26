@@ -1,19 +1,22 @@
 ---
-
 # PayTM Clone - <a href='https://paytm-axue.vercel.app' target='_blank'>PayDM link</a>
 
-This project demonstrate the paytm clone where user can signup and register to our platform and get some signup paper money. They can transfer the money to thier friends who are already on platform.
+This project demonstrates a PayTM clone where users can sign up and register on our platform to receive some signup paper money. They can transfer the money to their friends who are already on the platform.
 
 ## Features
 
 - **Secure Transactions:** Utilizes encryption and secure payment protocols to ensure transaction safety.
 - **Modular Codebase:** Well-structured and modular code for easy understanding and maintenance.
+- **User Search:** Allows users to search for other users on the platform.
+- **No User Found Handling:** Displays a message when no users are found based on the search criteria.
 
 ## Technologies Used
 
+- **Frontend:** React.js
 - **Backend:** Node.js, Express.js
 - **Security:** JWT for authentication, bcrypt for password hashing
 - **Database:** MongoDB for storing transaction and user data
+- **HTTP Client:** Axios for making API requests
 
 ## Getting Started
 
@@ -50,23 +53,30 @@ This project demonstrate the paytm clone where user can signup and register to o
    PAYTM_MERCHANT_ID=<Your PayTM Merchant ID>
    PAYTM_MERCHANT_KEY=<Your PayTM Merchant Key>
    JWT_SECRET=<Your JWT Secret>
-   MONGO_URI=<Your MongoDB URI>
    ```
 
-5. Start the server:
+5. Start the development server:
 
    ```bash
    npm start
    ```
-   
-## Contributing
 
-Contributions are welcome! Please fork the repository and create a pull request.
+### Usage
 
-## License
+1. Open your browser and navigate to `http://localhost:3000`.
+2. Sign up or log in to the platform.
+3. Use the search bar to find users.
+4. Transfer money to other users on the platform.
 
-This project is licensed under the MIT License.
+### Project Structure
 
----
+- `frontend/src/components`: Contains React components such as `User`, `Users`, `SearchBar`, and `NoUserFound`.
+- `backend`: Contains the backend code for handling API requests and database operations.
 
-This README provides a concise overview, installation guide, and clear usage instructions. Let me know if you'd like to add any more details!
+### Contributing
+
+Contributions are welcome! Please fork the repository and create a pull request with your changes.
+
+### License
+
+This project is licensed under the MIT License. See the `LICENSE` file for more details.
