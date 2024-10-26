@@ -2,6 +2,7 @@ import { User } from "./User";
 import { useEffect, useState } from "react"
 import axios from "axios";
 import { SearchBar } from "./SearchBar";
+import { NoUserFound } from "./NoUserFound";
 
 export function Users() {
 
@@ -30,7 +31,7 @@ export function Users() {
             <table className="min-w-full text-left text-sm font-light mt-10">
               <tbody>
                 {
-                  users.map(user => <User key={user._id} id={user._id} fname={user.firstname} lname={user.lastname}/>)
+                  users.length === 0 && filter.length !== 0 ? <NoUserFound /> : users.map(user => <User key={user._id} id={user._id} fname={user.firstname} lname={user.lastname}/>)
                 }
               </tbody>
             </table>
