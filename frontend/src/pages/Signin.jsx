@@ -61,7 +61,7 @@ function Signin() {
           <SubHeading lable={"Enter your details to login"} />
           <InputField
             onChange={(e) => {
-              setUsername(e.target.value);
+              setUsername(e.target.value.toLowerCase().trim());
             }}
             lable={"Email"}
             placeholder={"Enter your email"}

@@ -66,7 +66,7 @@ function Signup() {
             <SubHeading lable={"Enter your details to create account"} />
             <InputField
               onChange={(e) => {
-                setFirstname(e.target.value);
+                setFirstname(e.target.value.trim());
               }}
               lable={"First name"}
               placeholder={"Enter your first name"}
@@ -74,7 +74,7 @@ function Signup() {
 
             <InputField
               onChange={(e) => {
-                setLastname(e.target.value);
+                setLastname(e.target.value.trim());
               }}
               lable={"Last name"}
               placeholder={"Enter your last name"}
@@ -82,7 +82,7 @@ function Signup() {
 
             <InputField
               onChange={(e) => {
-                setUsername(e.target.value);
+                setUsername(e.target.value.toLowerCase().trim());
               }}
               lable={"Email"}
               placeholder={"Enter your email"}
