@@ -122,9 +122,9 @@ router.get("/getusers", middleWear, async (req, res) => {
 
     const user = await users.find({
         $or: [{
-            'firstname': { '$regex': usersFilter }
+            'firstname': { '$regex': usersFilter, '$options': 'i' }
         }, {
-            'lastname': { '$regex': usersFilter }
+            'lastname': { '$regex': usersFilter, '$options': 'i' }
         }],
         $and: [{
             _id: { $nin: [currentUser] }
