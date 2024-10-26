@@ -1,6 +1,6 @@
 ---
 
-# PayTM Clone - <a href='paytm-axue.vercel.app'>PayDM link</a>
+# PayTM Clone - <a href='https://paytm-axue.vercel.app' target='_blank'>PayDM link</a>
 
 This project demonstrate the paytm clone where user can signup and register to our platform and get some signup paper money. They can transfer the money to thier friends who are already on platform.
 
