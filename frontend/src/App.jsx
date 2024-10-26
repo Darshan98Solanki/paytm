@@ -4,6 +4,7 @@ import Signin from "./pages/Signin";
 import Dashboard from "./pages/Dashboard";
 import SendMoney from "./pages/SendMoney";
 import 'react-toastify/dist/ReactToastify.css';
+import { Loader } from "./components/Loader";
 
 function App() {
   return (

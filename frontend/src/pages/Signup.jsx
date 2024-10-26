@@ -7,6 +7,7 @@ import { SubHeading } from "../components/SubHeading";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Loader } from "../components/Loader";
 
 function Signup() {
   const navigator = useNavigate();
@@ -28,6 +29,7 @@ function Signup() {
     } catch (error) {}
   }, []);
 
+  const [loading, setLoading] = useState(false) 
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [username, setUsername] = useState("");
@@ -35,29 +37,26 @@ function Signup() {
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-
+    setLoading(true)
     try {
-      axios
-        .post("https://paytm-inky.vercel.app/api/v1/user/signup", {
+      const response = await axios.post("https://paytm-inky.vercel.app/api/v1/user/signup", {
           username,
           firstname,
           lastname,
           password,
         })
-        .then((response) => {
-          toast.success("User created successfully");
-        })
-        .catch((error) => {
-          toast.error(error.response.data);
-        });
+        toast.success("User created successfully");  
     } catch (error) {
       toast.error(error.response.data);
+    }finally{
+      setLoading(false);
     }
   };
 
   return (
     <>
       <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+      <Loader show={loading} />
         <div className="mx-auto max-w-lg">
           <form
             onSubmit={handleSignUp}

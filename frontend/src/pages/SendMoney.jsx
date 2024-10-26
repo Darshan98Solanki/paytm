@@ -3,8 +3,10 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { useState } from "react";
 import axios from "axios";
+import { Loader } from "../components/Loader";
 
 function SendMoney() {
+  const [loading, setLoading] = useState(false)
   const [searchParam] = useSearchParams();
   const [amount, setAmount] = useState(0);
   const id = searchParam.get("id");
@@ -14,6 +16,7 @@ function SendMoney() {
 
   return (
     <div className="w-full content-center mx-auto max-w-screen-sm align-middle px-4 py-16 sm:px-6 lg:px-8">
+      <Loader show={loading} />
       <form className="bg-white shadow-md shadow-slate-400 rounded px-8 pt-6 pb-8 mb-4">
           <button
             onClick={() => navigator("../dashboard")}
@@ -55,10 +58,10 @@ function SendMoney() {
           <button
             className="bg-indigo-500 hover:bg-indigo-600 w-80 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="button"
-            onClick={() => {
-              axios
-                .put(
-                  "https://paytm-inky.vercel.app/api/v1/account/transfer",
+            onClick={async () => {
+              setLoading(true)
+              try{
+              const response = await axios.put("https://paytm-inky.vercel.app/api/v1/account/transfer",
                   {
                     to: id,
                     amount,
@@ -69,12 +72,12 @@ function SendMoney() {
                     },
                   }
                 )
-                .then((response) => {
-                  toast.success(response.data.message);
-                })
-                .catch((error) => {
-                  toast.error(error.response.data.message);
-                });
+                toast.success(response.data.message);
+              }catch(error) {
+                toast.error(error.response.data.message);
+              }finally{
+                setLoading(false);
+              }
             }}
           >
             Send Money

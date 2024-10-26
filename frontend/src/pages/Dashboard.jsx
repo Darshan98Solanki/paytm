@@ -4,8 +4,10 @@ import { TopBar } from "../components/TopBar";
 import { Users } from "../components/Users";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Loader } from "../components/Loader";
 
 function Dashboard() {
+  const [loading, setLoading] = useState(true)
   const [username, setUserName] = useState();
   const [balance, setBalance] = useState();
   const navigator = useNavigate();
@@ -32,6 +34,7 @@ function Dashboard() {
   }, []);
 
   useEffect(() => {
+    setLoading(true)
     try {
       axios
         .get("https://paytm-inky.vercel.app/api/v1/user/getUserName", {
@@ -42,25 +45,32 @@ function Dashboard() {
         .then((response) => {
           setUserName(response.data.username);
         });
-    } catch (error) {}
+    } catch (error) {
+
+    }
   }, []);
 
   useEffect(() => {
-    try {
-      axios
-        .get("https://paytm-inky.vercel.app/api/v1/account/balance", {
-          headers: {
-            authorization: localStorage.getItem("token"),
-          },
-        })
-        .then((response) => {
+    async function fetchData(){
+      try {
+        const response = await axios.get("https://paytm-inky.vercel.app/api/v1/account/balance", {
+            headers: {
+              authorization: localStorage.getItem("token"),
+            },
+          })
           setBalance(response.data.balance);
-        });
-    } catch (error) {}
+      } catch (error) {
+  
+      }finally{
+        setLoading(false);
+      }
+    }
+    fetchData()
   }, [balance]);
 
   return (
     <>
+      <Loader show={loading} />
       <TopBar username={username} />
       <div className="m-8">
         <Balance balance={balance} />

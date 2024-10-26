@@ -7,9 +7,13 @@ import { SubHeading } from "../components/SubHeading";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Loader } from "../components/Loader";
 
 function Signin() {
-  const navigator = useNavigate();
+  const [loading, setLoading] = useState(false) 
+  const [username, setUsername] = useState()
+  const [password, setPassword] = useState()
+  const navigator = useNavigate()
 
   useEffect(() => {
     try {
@@ -28,32 +32,26 @@ function Signin() {
     } catch (error) {}
   }, []);
 
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
-
   const handleSignIn = async (e) => {
-    e.preventDefault();
-
-    try {
-      axios
-        .post("https://paytm-inky.vercel.app/api/v1/user/signin", {
-          username,
-          password,
-        })
-        .then((response) => {
+      e.preventDefault();
+      setLoading(true)
+      try {
+        const response = await axios.post("https://paytm-inky.vercel.app/api/v1/user/signin", {
+            username,
+            password,
+          })
           localStorage.setItem("token", "Bearer " + response.data.token);
           navigator("/Dashboard");
-        })
-        .catch((error) => {
-          toast.error(error.response.data);
-        });
-    } catch (error) {
-      toast.error(error.response.data);
-    }
+      } catch (error) {
+        toast.error(error.response.data);
+      }finally{
+        setLoading(false);
+      }
   };
 
   return (
     <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+      <Loader show={loading} />
       <div className="mx-auto max-w-lg">
         <form
           onSubmit={handleSignIn}
