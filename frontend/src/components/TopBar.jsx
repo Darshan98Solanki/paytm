@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Dropdown from "./DropDown"
+import Dropdown from "./Dropdown"
 import axios from "axios";
 import { Loader } from "./Loader";
 
