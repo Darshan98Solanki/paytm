@@ -1,9 +1,14 @@
+import { useNavigate } from "react-router-dom";
+
 export default function Transaction({firstname, lastname, amount, id}) {
+
+  const shortName = firstname.charAt(0)+lastname.charAt(0)
+  const navigate = useNavigate()
   return (
     <tr className="">
       <td className="whitespace-nowrap px-4 md:px-2 py-4 font-medium">
         <div className="inline-flex items-center justify-center w-12 h-12 text-xl text-white bg-indigo-500 rounded-full">
-          {/* {shortName} */}DS
+          {shortName}
         </div>  
         <span className="ml-4 font-bold text-sm align-[4px] md:text-lg">
           {firstname + " " + lastname}

@@ -1,24 +1,30 @@
 import { useEffect, useState } from "react";
 import { TopBar } from "../components/TopBar";
+import { NoTransactionFound } from "../components/NoTransactionFound";
 import Transaction from "../components/Transaction";
 import axios from "axios";
+import { Loader } from "../components/Loader";
 
 function Transactions() {
 
   const [Transactions, setTransactions] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(()=>{
-    axios.get("http://localhost:3000/api/v1/account/transactions", {
+    setLoading(true)
+    axios.get("https://paytm-inky.vercel.app/api/v1/account/transactions", {
       headers:{
         authorization: localStorage.getItem("token")
       }
     }).then(response=>{
-      console.log(response)
+      setTransactions(response.data)
+      setLoading(false)
     })
-  })
+  }, [])
 
   return (
     <>
+    <Loader show={loading} />
       <TopBar />
       <div className="max-w-6xl mx-auto mt-10">
         <h1 className="text-xl text-center font-bold mb-4">Transactions</h1>
@@ -39,7 +45,9 @@ function Transactions() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
-              <Transaction />
+              {
+                Transactions.length === 0? <NoTransactionFound/> : Transactions.map(data => <Transaction key={data._id} firstname={data.FirstName} lastname={data.LastName} amount={data.amount} id={data.UserId}/>)
+              }
             </tbody>
           </table>
         </div>
