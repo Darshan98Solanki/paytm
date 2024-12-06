@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const { middleWear } = require('../middlewear')
-const { accounts } = require('../db')
+const { accounts, transactions } = require('../db')
 const mongoose = require('mongoose')
 
 router.get('/balance', middleWear, async (req, res) => {
@@ -41,6 +41,7 @@ router.put('/transfer', middleWear, async (req, res) => {
         // main transaction
         await accounts.updateOne({ userId: req.userId }, { $inc: { balance: -amount } }).session(session)
         await accounts.updateOne({ userId: to }, { $inc: { balance: amount } }).session(session)
+        await transactions.create({ From: req.userId, To: to, amount: amount, timestamp: new Date() })
 
         // complete transaction
         await session.commitTransaction()
@@ -48,6 +49,35 @@ router.put('/transfer', middleWear, async (req, res) => {
     } else {
         res.status(404).json({ message: "Amount should be greater than 0" })
     }
+})
+
+router.get('/transactions', middleWear, async (req, res) => {
+
+    const data = await transactions.aggregate([
+        {
+            $match : {
+                From: new mongoose.Types.ObjectId(req.userId)
+            }
+        },  
+        {
+            $lookup: {
+                from: 'users',
+                localField: 'To',
+                foreignField: '_id',
+                as: 'ToUser'
+            }
+        }
+        , {
+            $project: {
+                amount: 1,
+                UserId: { $arrayElemAt: ['$ToUser._id',0]},
+                FirstName: { $arrayElemAt: ['$ToUser.firstname', 0] },
+                LastName: { $arrayElemAt: ['$ToUser.lastname', 0] }
+            }
+        }
+    ])
+
+    res.send(data)
 })
 
 module.exports = router

@@ -1,24 +1,39 @@
-import { useNavigate } from "react-router-dom"
-import { Button } from "./Button"
+import { useState, useEffect } from "react";
+import Dropdown from "./DropDown"
+import axios from "axios";
+import { Loader } from "./Loader";
 
-export function TopBar({username=""}) {
+export function TopBar() {
 
-  const navigator = useNavigate()
+  const [username,setUserName] = useState()
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("https://paytm-inky.vercel.app/api/v1/user/getUserName", {
+          headers: {
+            authorization: localStorage.getItem("token"),
+          },
+        });
+        setUserName(response.data.username);
+        setLoading(false);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, []);
 
   return <div className="h-14 py-10 shadow-md shadow-cyan-400/50 flex justify-between">
     <div className="flex font-mono text-xl lg:text-4xl font-bold flex-col justify-center h-full ml-5 lg:ml-10">
         PAY-DM
     </div>
     <div className="flex">
-        <div className="flex flex-col justify-center h-full mr-4 text-black font-bold">
-            Hello, {username+" 👋"}
-        </div>
         <div className="flex flex-col justify-center h-full mr-2">
-          <Button lable={"Logout"} onClick={()=>{
-            localStorage.removeItem("token")
-            navigator("../signin")
-          }}/>
+          <Dropdown username={username+" 👋"}/>
         </div>
     </div>
-  </div>
+    <Loader show={loading}/>
+  </div>  
 }

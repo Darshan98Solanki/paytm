@@ -8,7 +8,6 @@ import { Loader } from "../components/Loader";
 
 function Dashboard() {
   const [loading, setLoading] = useState(true)
-  const [username, setUserName] = useState();
   const [balance, setBalance] = useState();
   const navigator = useNavigate();
 
@@ -34,23 +33,6 @@ function Dashboard() {
   }, []);
 
   useEffect(() => {
-    setLoading(true)
-    try {
-      axios
-        .get("https://paytm-inky.vercel.app/api/v1/user/getUserName", {
-          headers: {
-            authorization: localStorage.getItem("token"),
-          },
-        })
-        .then((response) => {
-          setUserName(response.data.username);
-        });
-    } catch (error) {
-
-    }
-  }, []);
-
-  useEffect(() => {
     async function fetchData(){
       try {
         const response = await axios.get("https://paytm-inky.vercel.app/api/v1/account/balance", {
@@ -71,7 +53,7 @@ function Dashboard() {
   return (
     <>
       <Loader show={loading} />
-      <TopBar username={username} />
+      <TopBar/>
       <div className="m-8">
         <Balance balance={balance} />
       </div>

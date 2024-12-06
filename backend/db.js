@@ -42,10 +42,33 @@ const accountSchema = mongoose.Schema({
 
 })
 
+const TransactionHistorySchema = mongoose.Schema({
+    From:{
+        type: mongoose.Schema.Types.ObjectId, // ref to user table
+        ref: 'user',
+        required: true
+    },
+    To:{
+        type: mongoose.Schema.Types.ObjectId, // ref to user table,
+        ref: 'user',
+        required: true
+    },
+    amount:{
+        type: Number,
+        required: true
+    },
+    timestamp:{
+        type: Date,
+        required: true
+    }
+})
+
 const users = mongoose.model('Users', userSchema)
 const accounts = mongoose.model('Account', accountSchema)
+const transactions = mongoose.model('Transaction', TransactionHistorySchema)
 
 module.exports = { 
     users,
-    accounts
+    accounts,
+    transactions
 }

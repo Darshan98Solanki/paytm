@@ -3,8 +3,8 @@ import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
 import Dashboard from "./pages/Dashboard";
 import SendMoney from "./pages/SendMoney";
+import Transactions from "./pages/Transactions";
 import 'react-toastify/dist/ReactToastify.css';
-import { Loader } from "./components/Loader";
 
 function App() {
   return (
@@ -16,6 +16,7 @@ function App() {
           <Route path="/signin" element={<Signin />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/sendmoney" element={<SendMoney />} />
+          <Route path="/transactions" element={<Transactions />} />
         </Routes>
       </BrowserRouter>
     </>
