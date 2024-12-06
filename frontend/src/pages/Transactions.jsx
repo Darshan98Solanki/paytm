@@ -36,6 +36,9 @@ function Transactions() {
                   User Name
                 </th>
                 <th className="whitespace-nowrap px-4 py-2 text-left font-medium text-gray-900">
+                  Date
+                </th>
+                <th className="whitespace-nowrap px-4 py-2 text-left font-medium text-gray-900">
                   Amount
                 </th>
                 <th className="whitespace-nowrap px-4 py-2 text-left font-medium text-gray-900">
@@ -46,7 +49,7 @@ function Transactions() {
             </thead>
             <tbody className="divide-y divide-gray-200">
               {
-                Transactions.length === 0? <NoTransactionFound/> : Transactions.map(data => <Transaction key={data._id} firstname={data.FirstName} lastname={data.LastName} amount={data.amount} id={data.UserId}/>)
+                Transactions.length === 0? <NoTransactionFound/> : Transactions.map(data => <Transaction key={data._id} firstname={data.FirstName} date={data.timestamp.split("T")[0]} lastname={data.LastName} amount={data.amount} id={data.UserId}/>)
               }
             </tbody>
           </table>
