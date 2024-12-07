@@ -4,6 +4,7 @@ import { NoTransactionFound } from "../components/NoTransactionFound";
 import Transaction from "../components/Transaction";
 import axios from "axios";
 import { Loader } from "../components/Loader";
+import TransactionCardMobile from "../components/TransactionCardMobile";
 
 function Transactions() {
   const [Transactions, setTransactions] = useState([]);
@@ -33,9 +34,9 @@ function Transactions() {
         </h1>
 
         {/* Responsive Table Wrapper */}
-        <div className="overflow-x-auto rounded-lg border border-gray-200">
+        <div className="overflow-x-auto rounded-lg border border-gray-200 hidden sm:block">
           <table className="min-w-full divide-y divide-gray-200 bg-white text-sm">
-            <thead className="bg-gray-100 hidden sm:block">
+            <thead className="bg-gray-100">
               <tr>
                 <th className="whitespace-nowrap px-4 py-2 text-left font-medium text-gray-900">
                   User Name
@@ -49,12 +50,15 @@ function Transactions() {
                 <th className="whitespace-nowrap px-4 py-2 text-left font-medium text-gray-900">
                   Action
                 </th>
-                <th className="whitespace-nowrap px-4 py-2 text-left font-medium text-gray-900"></th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
               {Transactions.length === 0 ? (
-                <NoTransactionFound />
+                <tr>
+                  <td colSpan={4}>
+                    <NoTransactionFound />
+                  </td>
+                </tr>
               ) : (
                 Transactions.map((data) => (
                   <Transaction
@@ -72,7 +76,22 @@ function Transactions() {
         </div>
 
         {/* Mobile-Friendly Cards */}
-        
+        <div className="sm:hidden">
+        {Transactions.length === 0 ? (
+                <NoTransactionFound />
+              ) : (
+                Transactions.map((data) => (
+                  <TransactionCardMobile
+                    key={data._id}
+                    firstname={data.FirstName}
+                    date={data.timestamp.split("T")[0]}
+                    lastname={data.LastName}
+                    amount={data.amount}
+                    id={data.UserId}
+                  />
+                ))
+              )}
+        </div>
       </div>
     </>
   );
