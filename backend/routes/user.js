@@ -100,18 +100,22 @@ router.put('/updateUser', middleWear, async (req, res) => {
         return
     } else {
 
-        bcrypt.genSalt(saltRounds, (err, salt) => {
-            bcrypt.hash(parseData.data.password, salt, async (err, hash) => {
+        const firstname = parseData.data.firstname
+        const lastname = parseData.data.lastname
 
-                const firstname = parseData.data.firstname
-                const lastname = parseData.data.lastname
+        await users.updateOne({ _id: req.userId }, { firstname, lastname })
+        res.status(200).json({ message: "User profile updated successfully" })
 
-                await users.updateOne({ _id: req.userId }, { firstname, lastname, password: hash })
-                res.status(200).json({ message: "User profile updated successfully" })
-
-            })
-        })
     }
+})
+
+router.get('/getUser', middleWear, async (req, res) => {
+
+    const user = await users.findOne({ _id: req.userId }, { firstname: 1, lastname: 1 })
+    if (user)
+        res.status(200).json({ data: user })
+    else
+        res.status(404).json({ message: 'user not found' })
 
 })
 

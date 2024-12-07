@@ -14,8 +14,7 @@ const userSingIn = zod.object({
 
 const updateUserSChema = zod.object({
     firstname:zod.string({message:"first name is required"}).min(3, {message:'firstname must be 3 char long'}),
-    lastname:zod.string({message:"last name is required"}).min(3, {message:'last name must be 3 char long'}),
-    password:zod.string({message:"password is required"}).min(8, {message:'password must be 8 char long'}),
+    lastname:zod.string({message:"last name is required"}).min(3, {message:'last name must be 3 char long'})
 })
 
 module.exports = {
