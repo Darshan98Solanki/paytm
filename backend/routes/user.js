@@ -104,7 +104,7 @@ router.put('/updateUser', middleWear, async (req, res) => {
         const lastname = parseData.data.lastname
 
         await users.updateOne({ _id: req.userId }, { firstname, lastname })
-        res.status(200).json({ message: "User profile updated successfully" })
+        res.status(200).json({ message: "User profile updated successfully " })
 
     }
 })
