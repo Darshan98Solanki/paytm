@@ -65,6 +65,7 @@ function Signin() {
             }}
             lable={"Email"}
             placeholder={"Enter your email"}
+            value={username}
           />
           <InputField
             onChange={(e) => {
@@ -72,6 +73,7 @@ function Signin() {
             }}
             lable={"Password"}
             placeholder={"Enter your password"}
+            value={password}
           />
           <Button onClick={() => {}} lable={"Sign In"} />
           <ButtonBelowWarning
