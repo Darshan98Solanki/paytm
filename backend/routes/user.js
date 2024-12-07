@@ -113,7 +113,7 @@ router.get('/getUser', middleWear, async (req, res) => {
 
     const user = await users.findOne({ _id: req.userId }, { firstname: 1, lastname: 1 })
     if (user)
-        res.status(200).json({ data: user })
+        res.status(200).json(user)
     else
         res.status(404).json({ message: 'user not found' })
 
