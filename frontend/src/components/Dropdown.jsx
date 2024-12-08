@@ -44,6 +44,15 @@ export default function DropDown({ username }) {
           <div className="p-2">
             <a
               onClick={() => {
+                navigator("../dashboard");
+              }}
+              className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+              role="menuitem"
+            >
+              Sent Money
+            </a>
+            <a
+              onClick={() => {
                 navigator("../profile");
               }}
               className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
