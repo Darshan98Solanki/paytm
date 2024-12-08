@@ -64,7 +64,7 @@ export default function UserProfile() {
                     <SubHeading lable={"Enter your details to update profile"} />
                     <InputField
                         onChange={(e) => {
-                            setFirstName(e.target.value.toLowerCase().trim());
+                            setFirstName(e.target.value.trim());
                         }}
                         lable={"firstname"}
                         placeholder={"Enter your First Name"}
@@ -72,7 +72,7 @@ export default function UserProfile() {
                     />
                     <InputField
                         onChange={(e) => {
-                            setLastName(e.target.value);
+                            setLastName(e.target.value.trim());
                         }}
                         lable={"lastname"}
                         placeholder={"Enter your Last Name"}

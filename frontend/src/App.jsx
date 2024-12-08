@@ -6,6 +6,7 @@ import SendMoney from "./pages/SendMoney";
 import Transactions from "./pages/Transactions";
 import 'react-toastify/dist/ReactToastify.css';
 import UserProfile from "./pages/UserProfile";
+import Home from "./pages/Home";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/sendmoney" element={<SendMoney />} />
           <Route path="/transactions" element={<Transactions />} />
           <Route path="/profile" element={<UserProfile/>} />
+          <Route path="/home" element={<Home/>} />
         </Routes>
       </BrowserRouter>
     </>

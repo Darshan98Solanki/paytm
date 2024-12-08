@@ -26,7 +26,7 @@ function Signin() {
         })
         .then((response) => {
           if (response.data.authorization) {
-            navigator("/dashboard");
+            navigator("/home");
           }
         });
     } catch (error) {}

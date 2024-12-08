@@ -22,7 +22,7 @@ function SendMoney() {
             onClick={() => navigator("../dashboard")}
             className="flex items-center mb-6 md:mb-0 justify-center p-2 bg-red-500 text-white rounded hover:bg-red-600" // Circular button
           >
-            <span className="text-xs font-bold">Go Back</span>
+            <span className="text-xs font-bold">Go Dashboard</span>
           </button>
           <Heading className="" lable="Send Money" />
         <div className="my-6 ">
