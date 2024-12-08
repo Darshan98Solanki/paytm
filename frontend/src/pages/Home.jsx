@@ -39,7 +39,7 @@ export default function Home() {
                             </div>
                             <div className="bg-white shadow-lg p-6 rounded-lg">
                                 <h4 className="text-xl font-bold mb-4">Transaction History</h4>
-                                <p>Implemented Transaction History for user convenience</p>
+                                <p>Implemented transaction history for user convenience</p>
                             </div>
                             <div className="bg-white shadow-lg p-6 rounded-lg">
                                 <h4 className="text-xl font-bold mb-4">Instant Processing</h4>
