@@ -41,7 +41,7 @@ function Signin() {
             password,
           })
           localStorage.setItem("token", "Bearer " + response.data.token);
-          navigator("/Dashboard");
+          navigator("/home");
       } catch (error) {
         toast.error(error.response.data);
       }finally{
