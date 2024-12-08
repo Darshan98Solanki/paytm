@@ -70,6 +70,7 @@ function Signup() {
               }}
               lable={"First name"}
               placeholder={"Enter your first name"}
+              value={firstname}
             />
 
             <InputField
@@ -78,6 +79,7 @@ function Signup() {
               }}
               lable={"Last name"}
               placeholder={"Enter your last name"}
+              value={lastname}
             />
 
             <InputField
@@ -86,6 +88,7 @@ function Signup() {
               }}
               lable={"Email"}
               placeholder={"Enter your email"}
+              value={username}
             />
 
             <InputField
@@ -94,6 +97,7 @@ function Signup() {
               }}
               lable={"Password"}
               placeholder={"Enter your password"}
+              value={password}
             />
 
             <Button onClick={(e) => {}} lable={"Sign Up"} />
