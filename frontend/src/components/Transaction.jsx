@@ -1,12 +1,15 @@
 import { useNavigate } from "react-router-dom";
+import tailwindAvatarColors from "../assets/tailwindAvatarColors";
 
 export default function Transaction({ firstname, lastname, date, amount, id }) {
   const shortName = firstname.charAt(0) + lastname.charAt(0);
   const navigate = useNavigate();
+  const randomColor = tailwindAvatarColors[Math.floor(Math.random() * tailwindAvatarColors.length)];
+
   return (
     <tr className="">
       <td className="whitespace-nowrap px-4 md:px-2 py-4 font-medium">
-        <div className="inline-flex items-center justify-center w-12 h-12 text-xl text-white bg-indigo-500 rounded-full">
+        <div className={`inline-flex items-center justify-center w-12 h-12 text-xl text-white ${randomColor} rounded-full`}>
           {shortName}
         </div>
         <span className="ml-4 font-bold text-sm align-[4px] md:text-md">
