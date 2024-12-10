@@ -55,10 +55,15 @@ router.get('/transactions', middleWear, async (req, res) => {
 
     const data = await transactions.aggregate([
         {
-            $match : {
-                From: new mongoose.Types.ObjectId(req.userId)
+            $match: {
+                $or:[{
+                        From: new mongoose.Types.ObjectId(req.userId)
+                    },{
+                        To: new mongoose.Types.ObjectId(req.userId)
+                    }
+                ]
             }
-        },  
+        },
         {
             $lookup: {
                 from: 'users',
@@ -66,17 +71,30 @@ router.get('/transactions', middleWear, async (req, res) => {
                 foreignField: '_id',
                 as: 'ToUser'
             }
+        }, {
+            $lookup: {
+                from: 'users',
+                localField: 'From',
+                foreignField: '_id',
+                as: 'FromUser'
+            }
         }
         , {
             $project: {
                 amount: 1,
-                UserId: { $arrayElemAt: ['$ToUser._id',0]},
+                UserId: { $arrayElemAt: ['$ToUser._id', 0] },
+                FromUserId: { $arrayElemAt: ['$FromUser._id', 0] },
                 FirstName: { $arrayElemAt: ['$ToUser.firstname', 0] },
                 LastName: { $arrayElemAt: ['$ToUser.lastname', 0] },
-                timestamp:1
+                timestamp: 1
             }
         }
     ])
+
+    
+    data.map(data => (data.FromUserId == req.userId)? data.amount *= -1: data.amount)
+    
+    data.map(data => console.log(data))
 
     res.send(data)
 })
