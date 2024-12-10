@@ -63,11 +63,11 @@ function Transactions() {
                 Transactions.map((data) => (
                   <Transaction
                     key={data._id}
-                    firstname={data.FirstName}
                     date={data.timestamp.split("T")[0]}
-                    lastname={data.LastName}
+                    firstname={(data.amount < 0) ? data.ToFirstName : data.FromFirstName}
+                    lastname={(data.amount < 0) ? data.ToLastName : data.FromLastName}
                     amount={data.amount}
-                    id={data.UserId}
+                    id={(data.amount < 0) ? data.UserId : data.FromUserId}
                   />
                 ))
               )}
@@ -77,20 +77,20 @@ function Transactions() {
 
         {/* Mobile-Friendly Cards */}
         <div className="sm:hidden">
-        {Transactions.length === 0 ? (
-                <NoTransactionFound />
-              ) : (
-                Transactions.map((data) => (
-                  <TransactionCardMobile
-                    key={data._id}
-                    firstname={data.FirstName}
-                    date={data.timestamp.split("T")[0]}
-                    lastname={data.LastName}
-                    amount={data.amount}
-                    id={data.UserId}
-                  />
-                ))
-              )}
+          {Transactions.length === 0 ? (
+            <NoTransactionFound />
+          ) : (
+            Transactions.map((data) => (
+              <TransactionCardMobile
+                key={data._id}
+                date={data.timestamp.split("T")[0]}
+                firstname={(data.amount < 0) ? data.ToFirstName : data.FromFirstName}
+                lastname={(data.amount < 0) ? data.ToLastName : data.FromLastName}
+                amount={data.amount}
+                id={(data.amount < 0) ? data.UserId : data.FromUserId}
+              />
+            ))
+          )}
         </div>
       </div>
     </>

@@ -20,8 +20,8 @@ export default function Transaction({ firstname, lastname, date, amount, id }) {
         </span>
       </td>
       <td>
-        <span className="ml-4 font-bold text-sm align-[4px] md:text-md">
-          $ {amount}
+        <span className={`ml-4 font-bold text-sm align-[4px] md:text-md ${amount < 0 ? 'text-red-500' : 'text-green-500'}`}>
+          {amount > 0 ? '+'+amount : amount} $
         </span>
       </td>
       <td>
@@ -39,7 +39,7 @@ export default function Transaction({ firstname, lastname, date, amount, id }) {
             }}
             className="bg-gray-800 text-white text-xs md:text-md lg:text-md md:px-6 md:py-4 px-3 py-2 rounded-md hover:bg-gray-700 font-bold focus:outline-none"
           >
-            Send Again
+            Send Money
           </button>
         </div>
       </td>

@@ -17,7 +17,7 @@ export default function TransactionCardMobile({firstname, lastname, amount, id, 
           <span className="font-semibold">Date:</span> {date}
         </p>
         <p className="text-sm text-gray-700">
-          <span className="font-semibold">Amount:</span> {amount} $
+          <span className="font-semibold">Amount:</span> <span className={` ${amount > 0? 'text-green-500': 'text-red-500' }`}>{amount > 0 ? '+'+amount : amount } $</span>
         </p>
         <div className="mt-2">
           <button
@@ -33,7 +33,7 @@ export default function TransactionCardMobile({firstname, lastname, amount, id, 
             }}
             className="bg-gray-800 text-white text-xs md:text-md lg:text-md md:px-6 md:py-4 px-3 py-2 rounded-md hover:bg-gray-700 font-bold focus:outline-none"
           >
-            Send Again
+            Send Money
           </button>
         </div>
       </div>
