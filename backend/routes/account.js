@@ -84,8 +84,10 @@ router.get('/transactions', middleWear, async (req, res) => {
                 amount: 1,
                 UserId: { $arrayElemAt: ['$ToUser._id', 0] },
                 FromUserId: { $arrayElemAt: ['$FromUser._id', 0] },
-                FirstName: { $arrayElemAt: ['$ToUser.firstname', 0] },
-                LastName: { $arrayElemAt: ['$ToUser.lastname', 0] },
+                ToFirstName: { $arrayElemAt: ['$ToUser.firstname', 0] },
+                ToLastName: { $arrayElemAt: ['$ToUser.lastname', 0] },
+                FromFirstName: { $arrayElemAt: ['$FromUser.firstname', 0] },
+                FromLastName: { $arrayElemAt: ['$FromUser.lastname', 0] },
                 timestamp: 1
             }
         }
