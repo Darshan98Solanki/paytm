@@ -91,10 +91,7 @@ router.get('/transactions', middleWear, async (req, res) => {
         }
     ])
 
-    
     data.map(data => (data.FromUserId == req.userId)? data.amount *= -1: data.amount)
-    
-    data.map(data => console.log(data))
 
     res.send(data)
 })
