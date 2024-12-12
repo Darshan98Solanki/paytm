@@ -53,6 +53,8 @@ router.put('/transfer', middleWear, async (req, res) => {
 
 router.get('/transactions', middleWear, async (req, res) => {
 
+    const sort = {'timestamp': -1}
+
     const data = await transactions.aggregate([
         {
             $match: {
@@ -82,7 +84,7 @@ router.get('/transactions', middleWear, async (req, res) => {
         , {
             $project: {
                 amount: 1,
-                UserId: { $arrayElemAt: ['$ToUser._id', 0] },
+                ToUserId: { $arrayElemAt: ['$ToUser._id', 0] },
                 FromUserId: { $arrayElemAt: ['$FromUser._id', 0] },
                 ToFirstName: { $arrayElemAt: ['$ToUser.firstname', 0] },
                 ToLastName: { $arrayElemAt: ['$ToUser.lastname', 0] },
@@ -91,7 +93,7 @@ router.get('/transactions', middleWear, async (req, res) => {
                 timestamp: 1
             }
         }
-    ])
+    ]).sort(sort)
 
     data.map(data => (data.FromUserId == req.userId)? data.amount *= -1: data.amount)
 
