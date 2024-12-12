@@ -102,8 +102,18 @@ router.put('/updateUser', middleWear, async (req, res) => {
 
         const firstname = parseData.data.firstname
         const lastname = parseData.data.lastname
+        const password = parseData.data.password
 
-        await users.updateOne({ _id: req.userId }, { firstname, lastname })
+        if(password){
+            bcrypt.genSalt(saltRounds, (err, salt) => {
+                bcrypt.hash(parseData.data.password, salt, async (err, hash) => {
+                    await users.updateOne({ _id: req.userId }, { firstname, lastname, password: hash})
+                })
+            })
+        }else{
+            await users.updateOne({ _id: req.userId }, { firstname, lastname })
+        }
+
         res.status(200).json({ message: "User profile updated successfully " })
 
     }
