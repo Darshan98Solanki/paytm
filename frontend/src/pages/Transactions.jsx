@@ -67,7 +67,7 @@ function Transactions() {
                     firstname={(data.amount < 0) ? data.ToFirstName : data.FromFirstName}
                     lastname={(data.amount < 0) ? data.ToLastName : data.FromLastName}
                     amount={data.amount}
-                    id={(data.amount < 0) ? data.UserId : data.FromUserId}
+                    id={(data.amount < 0) ? data.ToUserId : data.FromUserId}
                   />
                 ))
               )}
@@ -87,7 +87,7 @@ function Transactions() {
                 firstname={(data.amount < 0) ? data.ToFirstName : data.FromFirstName}
                 lastname={(data.amount < 0) ? data.ToLastName : data.FromLastName}
                 amount={data.amount}
-                id={(data.amount < 0) ? data.UserId : data.FromUserId}
+                id={(data.amount < 0) ? data.ToUserId : data.FromUserId}
               />
             ))
           )}
