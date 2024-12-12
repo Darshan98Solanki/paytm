@@ -11,6 +11,7 @@ import { ToastContainer, toast } from "react-toastify";
 export default function UserProfile() {
     const [firstName, setFirstName] = useState();
     const [lastName, setLastName] = useState();
+    const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -36,6 +37,7 @@ export default function UserProfile() {
                 {
                     firstname: firstName,
                     lastname: lastName,
+                    ...(password && { password }),
                 }
                 , {
                     headers: {
@@ -77,6 +79,14 @@ export default function UserProfile() {
                         lable={"lastname"}
                         placeholder={"Enter your Last Name"}
                         value={lastName}
+                    />
+                    <InputField
+                        onChange={(e) => {
+                            setPassword(e.target.value.trim());
+                        }}
+                        lable={"password"}
+                        placeholder={"Enter new password (optional)"}
+                        value={password}
                     />
                     <Button onClick={() => { }} lable={"Update Profile"} />
                 </form>

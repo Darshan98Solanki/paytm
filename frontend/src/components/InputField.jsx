@@ -12,7 +12,6 @@ export function InputField({lable, placeholder, onChange, value=""}) {
           placeholder={placeholder}
           onChange={onChange}
           value={value}
-          required
         />
       </div>
     </div>
