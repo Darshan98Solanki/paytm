@@ -50,7 +50,16 @@ function SendMoney() {
             type="number"
             placeholder="Amount"
             onChange={(e) => {
-              setAmount(e.target.value);
+              const value = e.target.value;
+              const decimalIndex = value.indexOf('.');
+              if(value.charAt(0) != '0'){
+                if (decimalIndex !== -1 && value.length - decimalIndex > 3) {
+                  e.target.value = value.slice(0, decimalIndex + 3);
+                }
+                setAmount(e.target.value);
+              }else{
+                e.target.value = amount
+              }
             }}
           />
         </div>
