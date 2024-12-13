@@ -25,7 +25,7 @@ function App() {
             <Route path="/transactions" element={<Transactions />} />
             <Route path="/profile" element={<UserProfile />} />
             <Route path="/home" element={<Home />} />
-            <Route path="/paymentdone/:name" element={<PaymentSuccess />} />
+            <Route path="/paymentdone/:amount" element={<PaymentSuccess />} />
           </Routes>
         </BrowserRouter>
       </SkeletonTheme>

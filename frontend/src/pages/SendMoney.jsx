@@ -81,7 +81,7 @@ function SendMoney() {
                   }
                 )
                 toast.success(response.data.message);
-                navigator(`../paymentdone/${fname+" "+lname}`)
+                navigator(`../paymentdone/${amount}`)
               } catch (error) {
                 toast.error(error.response.data.message);
               } finally {
