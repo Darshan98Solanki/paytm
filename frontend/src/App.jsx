@@ -7,22 +7,26 @@ import Transactions from "./pages/Transactions";
 import 'react-toastify/dist/ReactToastify.css';
 import UserProfile from "./pages/UserProfile";
 import Home from "./pages/Home";
+import { SkeletonTheme } from "react-loading-skeleton";
+import 'react-loading-skeleton/dist/skeleton.css';
 
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Signin/>} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/signin" element={<Signin />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/sendmoney" element={<SendMoney />} />
-          <Route path="/transactions" element={<Transactions />} />
-          <Route path="/profile" element={<UserProfile/>} />
-          <Route path="/home" element={<Home/>} />
-        </Routes>
-      </BrowserRouter>
+      <SkeletonTheme>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Signin />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/signin" element={<Signin />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/sendmoney" element={<SendMoney />} />
+            <Route path="/transactions" element={<Transactions />} />
+            <Route path="/profile" element={<UserProfile />} />
+            <Route path="/home" element={<Home />} />
+          </Routes>
+        </BrowserRouter>
+      </SkeletonTheme>
     </>
   );
 }

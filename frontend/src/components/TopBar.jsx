@@ -3,6 +3,7 @@ import Dropdown from "./Dropdown"
 import axios from "axios";
 import { Loader } from "./Loader";
 import { useNavigate } from "react-router-dom";
+import Skeleton from "react-loading-skeleton";
 
 export function TopBar() {
 
@@ -30,7 +31,6 @@ export function TopBar() {
   }, []);
 
   const [username, setUserName] = useState()
-  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,7 +41,6 @@ export function TopBar() {
           },
         });
         setUserName(response.data.username);
-        setLoading(false);
       } catch (error) {
         console.error(error);
       }
@@ -57,9 +56,8 @@ export function TopBar() {
     </div>
     <div className="flex">
       <div className="flex flex-col justify-center h-full mr-2">
-        <Dropdown username={username + " 👋"} />
+        {(username)?<Dropdown username={username + " 👋"} /> : <Skeleton className='animate-pulse' inline={true} width="13rem" height="2.5rem" /> }
       </div>
     </div>
-    <Loader show={loading} />
   </div>
 }

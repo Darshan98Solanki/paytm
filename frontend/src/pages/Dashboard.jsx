@@ -52,7 +52,7 @@ function Dashboard() {
 
   return (
     <>
-      <Loader show={loading} />
+      {/* <Loader show={loading} /> */}
       <TopBar/>
       <div className="m-8">
         <Balance balance={balance} />
