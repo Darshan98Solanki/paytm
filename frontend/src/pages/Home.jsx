@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { TopBar } from "../components/TopBar";
+import Footer from "../components/Footer";
 
 export default function Home() {
 
@@ -59,14 +60,7 @@ export default function Home() {
                         </p>
                     </div>
                 </section>
-
-                {/* Footer */}
-                <footer id="contact" className="bg-gray-800 text-white py-6">
-                    <div className="container mx-auto text-center px-6">
-                        <p>Contact us at darshan98solanki@gmail.com</p>
-                        <p>&copy; 2024 Darshan Solanki. All Rights Reserved.</p>
-                    </div>
-                </footer>
+                <Footer/>
             </div>
         </>
     )

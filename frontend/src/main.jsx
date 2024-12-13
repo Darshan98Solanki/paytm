@@ -4,5 +4,9 @@ import App from './App.jsx'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <App />
+    <div className="flex flex-col min-h-screen">
+        <main className="flex-grow">
+            <App />
+        </main>
+    </div>
 )

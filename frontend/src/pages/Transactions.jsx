@@ -5,6 +5,10 @@ import Transaction from "../components/Transaction";
 import axios from "axios";
 import { Loader } from "../components/Loader";
 import TransactionCardMobile from "../components/TransactionCardMobile";
+import Footer from "../components/Footer";
+import TransactionSkeletion from "./TransactionSkeleton";
+import TransactionSkeletonMobile from "../components/TransactionSkeletonMobile";
+import { NoTransactionFoundMobile } from "../components/NoTransactionFoundMobile";
 
 function Transactions() {
   const [Transactions, setTransactions] = useState([]);
@@ -26,9 +30,9 @@ function Transactions() {
 
   return (
     <>
-      <Loader show={loading} />
+      {/* <Loader show={loading} /> */}
       <TopBar />
-      <div className="max-w-6xl mx-auto mt-10 px-4">
+      <div className="max-w-6xl min-h-screen mx-auto mt-10 px-4">
         <h1 className="text-lg text-center font-bold mb-4 sm:text-xl">
           Transactions
         </h1>
@@ -53,46 +57,41 @@ function Transactions() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
-              {Transactions.length === 0 ? (
-                <tr>
-                  <td colSpan={4}>
-                    <NoTransactionFound />
-                  </td>
-                </tr>
-              ) : (
-                Transactions.map((data) => (
-                  <Transaction
-                    key={data._id}
-                    date={data.timestamp.split("T")[0]}
-                    firstname={(data.amount < 0) ? data.ToFirstName : data.FromFirstName}
-                    lastname={(data.amount < 0) ? data.ToLastName : data.FromLastName}
-                    amount={data.amount}
-                    id={(data.amount < 0) ? data.ToUserId : data.FromUserId}
-                  />
-                ))
-              )}
+              {
+                (loading)?<TransactionSkeletion count={10}/> : (Transactions.length != 0)?
+                  Transactions.map((data) => (
+                    <Transaction
+                      key={data._id}
+                      date={data.timestamp.split("T")[0]}
+                      firstname={(data.amount < 0) ? data.ToFirstName : data.FromFirstName}
+                      lastname={(data.amount < 0) ? data.ToLastName : data.FromLastName}
+                      amount={data.amount}
+                      id={(data.amount < 0) ? data.ToUserId : data.FromUserId}
+                    />
+                  )) : <NoTransactionFound/>
+                }
             </tbody>
           </table>
         </div>
 
         {/* Mobile-Friendly Cards */}
         <div className="sm:hidden">
-          {Transactions.length === 0 ? (
-            <NoTransactionFound />
-          ) : (
-            Transactions.map((data) => (
-              <TransactionCardMobile
-                key={data._id}
-                date={data.timestamp.split("T")[0]}
-                firstname={(data.amount < 0) ? data.ToFirstName : data.FromFirstName}
-                lastname={(data.amount < 0) ? data.ToLastName : data.FromLastName}
-                amount={data.amount}
-                id={(data.amount < 0) ? data.ToUserId : data.FromUserId}
-              />
-            ))
-          )}
+           {
+             (loading)?<TransactionSkeletonMobile count={10}/> : (Transactions.length != 0)?
+             Transactions.map((data) => (
+               <TransactionCardMobile
+                 key={data._id}
+                 date={data.timestamp.split("T")[0]}
+                 firstname={(data.amount < 0) ? data.ToFirstName : data.FromFirstName}
+                 lastname={(data.amount < 0) ? data.ToLastName : data.FromLastName}
+                 amount={data.amount}
+                 id={(data.amount < 0) ? data.ToUserId : data.FromUserId}
+               />
+              )):<NoTransactionFoundMobile/>
+           }
         </div>
       </div>
+      <Footer/>
     </>
   );
 }

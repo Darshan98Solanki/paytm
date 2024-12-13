@@ -5,6 +5,7 @@ import { Users } from "../components/Users";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Loader } from "../components/Loader";
+import Footer from "../components/Footer";
 
 function Dashboard() {
   const [loading, setLoading] = useState(true)
@@ -61,6 +62,7 @@ function Dashboard() {
       <div className="">
         <Users />
       </div>
+      <Footer/>
     </>
   );
 }

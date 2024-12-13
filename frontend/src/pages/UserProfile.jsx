@@ -7,6 +7,7 @@ import { SubHeading } from "../components/SubHeading";
 import { InputField } from "../components/InputField";
 import { Button } from "../components/Button";
 import { ToastContainer, toast } from "react-toastify";
+import Footer from "../components/Footer";
 
 export default function UserProfile() {
     const [firstName, setFirstName] = useState();
@@ -93,6 +94,7 @@ export default function UserProfile() {
             </div>
             <ToastContainer />
         </div>
+        <Footer/>
     </>
     );
 }
