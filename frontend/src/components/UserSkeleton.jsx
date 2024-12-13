@@ -3,7 +3,7 @@ import Skeleton from 'react-loading-skeleton';
 export default function UserSkeleton({ count }) {
     return (
         Array(count).fill(0).map((_, i) => (
-            <tr className="">
+            <tr className="" key={i}>
                 <td className="whitespace-nowrap px-4 md:px-2 py-4">
                     <div className={`inline-flex items-center justify-center w-12 h-12 rounded-full`}>
                         <Skeleton className='animate-pulse' circle={true} height={48} width={48} />

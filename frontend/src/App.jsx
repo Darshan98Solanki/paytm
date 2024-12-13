@@ -9,6 +9,7 @@ import UserProfile from "./pages/UserProfile";
 import Home from "./pages/Home";
 import { SkeletonTheme } from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css';
+import PaymentSuccess from "./components/PaymentSuccess";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/transactions" element={<Transactions />} />
             <Route path="/profile" element={<UserProfile />} />
             <Route path="/home" element={<Home />} />
+            <Route path="/paymentdone/:name" element={<PaymentSuccess />} />
           </Routes>
         </BrowserRouter>
       </SkeletonTheme>

@@ -4,8 +4,6 @@ import { ToastContainer, toast } from "react-toastify";
 import { useState } from "react";
 import axios from "axios";
 import { Loader } from "../components/Loader";
-import Footer from "../components/Footer";
-
 function SendMoney() {
   const [loading, setLoading] = useState(false)
   const [searchParam] = useSearchParams();
@@ -83,6 +81,7 @@ function SendMoney() {
                   }
                 )
                 toast.success(response.data.message);
+                navigator(`../paymentdone/${fname+" "+lname}`)
               } catch (error) {
                 toast.error(error.response.data.message);
               } finally {
