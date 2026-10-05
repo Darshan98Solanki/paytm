@@ -63,12 +63,26 @@ const TransactionHistorySchema = mongoose.Schema({
     }
 })
 
+const pauSchema = mongoose.Schema({
+    name: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    timestamp: {
+        type: Date,
+        default: Date.now
+    }
+})
+
 const users = mongoose.model('Users', userSchema)
 const accounts = mongoose.model('Account', accountSchema)
 const transactions = mongoose.model('Transaction', TransactionHistorySchema)
+const pau = mongoose.model('Pau', pauSchema, 'pau') // 3rd arg keeps collection name exactly 'pau'
 
 module.exports = { 
     users,
     accounts,
-    transactions
+    transactions,
+    pau
 }
